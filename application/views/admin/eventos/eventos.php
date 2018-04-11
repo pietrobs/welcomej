@@ -43,7 +43,8 @@
                     </div>
                     <div class="form-group">
                       <div class="col-sm-10">
-                      
+                        <label class="col-sm-12 col-sm-12 control-label"  style="margin-top: 10px">Procurar por:</label>
+                        <input type="text" name="search_by" class="form-control round-form">
                       </div>
                     <div class="col-sm-2">
                       <br/>
@@ -57,7 +58,7 @@
                   <div class="col-sm-12 message">
                     <?php
 
-                    if($this->session->flashdata('successo') == TRUE){
+                    if($this->session->flashdata('sucesso') == TRUE){
                       echo '<br><br><div class="alert alert-success alert-dismissable"> <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> <strong>Sucesso!</strong> Operação realizada! </div><br>'; 
                     }
 
@@ -72,8 +73,8 @@
                   <table class="table table-striped table-advance table-hover">
                     <thead>
                       <tr>
-                          <th><i class="fa fa-font"></i> Título</th>
-                          <th class="hidden-phone"><i class="far fa-calendar-alt"></i> Data</th>                                  
+                          <th><i class="fa fa-font"></i> Nome Palestra</th>
+                          <th class="hidden-phone"><i class="far fa-user"></i> Ministrante</th>                                  
                           <th></th>
                       </tr>
                     </thead>

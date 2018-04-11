@@ -18,10 +18,10 @@ class Admin extends CI_Controller {
     $this->load->view('admin/footer-admin');
   }
   public function eventos($attribute = 'nome_palestra', 
-                             $order_by = 'ASC', 
-                             $quantidade = 10, 
-                             $inicio = 0, 
-                             $nome = ''){
+                          $order_by = 'ASC', 
+                          $quantidade = 10, 
+                          $inicio = 0, 
+                          $nome = ''){
 
     $this->load->library('pagination');
     $searchFilter = $this->eventoModel->defaultFilter();
@@ -44,10 +44,7 @@ class Admin extends CI_Controller {
     $dados['paginacao'] = $this->listmaker->getLinks($searchFilter, 
                                                      $this->eventoModel);
     $dados['filtros'] = $searchFilter;
-    //$this->load->view('html-header-admin');
-    //$this->load->view('header-admin');
-    //$this->load->view('noticia/noticia', $dados);
-    //$this->load->view('footer-admin');
+
     $this->load->view('admin/html-header-admin');
     $this->load->view('admin/header-admin');
     $this->load->view('admin/eventos/eventos', $dados);

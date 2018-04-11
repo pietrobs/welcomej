@@ -9,7 +9,7 @@
             </div>
 
             <!--logo start-->
-            <a href="<?php echo base_url('Admin'); ?>" class="logo"><b>PERFORMANCE JR.</b></a>
+            <a href="<?php echo base_url('Admin'); ?>" class="logo"><b>WELCOMEJ</b></a>
             <!--logo end-->
             <div class="nav notify-row" id="top_menu">
                 <!--  notification start -->
