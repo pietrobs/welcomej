@@ -11,7 +11,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ::-moz-selection { background-color: #E13300; color: white; }
 
 body {
-	background-color: #fff;
 	margin: 40px;
 	font: 13px/20px normal Helvetica, Arial, sans-serif;
 	color: #4F5155;
@@ -25,9 +24,7 @@ a {
 
 h1 {
 	color: #444;
-	background-color: transparent;
-	border-bottom: 1px solid #D0D0D0;
-	font-size: 19px;
+	font-size: 26px;
 	font-weight: normal;
 	margin: 0 0 14px 0;
 	padding: 14px 15px 10px 15px;
@@ -45,9 +42,14 @@ code {
 }
 
 #container {
-	margin: 10px;
+	margin: 40px auto;
+	margin-top: 130px;
+	text-align: center;
+	background-color: rgba(255,255,255,.6);
 	border: 1px solid #D0D0D0;
-	box-shadow: 0 0 8px #D0D0D0;
+	box-shadow: 0 0 8px #333;
+	width: 600px;
+	padding: 10px;
 }
 
 p {
@@ -55,10 +57,11 @@ p {
 }
 </style>
 </head>
-<body>
+<body style="background-image: url('../assets/img/login.jpg'); background-size: 20%;">
 	<div id="container">
+		<img src="../assets/img/logo.png" width="400px">
 		<h1><?php echo $heading; ?></h1>
-		<?php echo $message; ?>
+		<p><?php echo $message; ?></p>
 	</div>
 </body>
 </html>

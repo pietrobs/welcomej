@@ -22,7 +22,7 @@
 	<div class="col-lg-12">
 		<h1 class="page-header">Alterar senha</h1>
 		<?php getMensagem($this->session) ?>
-		<a href="<?= base_url('Painel/meus_dados') ?>" class="btn btn-primary"><em class="fa fa-undo"></em> Voltar</a><br><br><br>
+		<a href="<?= base_url('Painel/meus_dados') ?>" class="btn btn-primary btn-lg"><em class="fa fa-undo"></em> Voltar</a><br><br><br>
 	</div>
 </div><!--/.row-->
 

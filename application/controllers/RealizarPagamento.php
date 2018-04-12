@@ -18,6 +18,11 @@ class RealizarPagamento extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 
+		if(!isset($this->session->usuario)){
+			$this->session->set_flashdata("erro",'Você precisa entrar para ter acesso a essa área.');
+			redirect(base_url());
+		}
+
 		$this->SANDBOX_ENVIRONMENT = true;
 
 		if($this->SANDBOX_ENVIRONMENT){
@@ -30,17 +35,12 @@ class RealizarPagamento extends CI_Controller {
 			$this->PAGSEGURO_DIRECT_PAYMENT = 'https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js';
 		}
 
-
-
 		//DEFININDO O VALOR DO PAGAMENTO
-
 		if($this->session->usuario['filiado_nucleo']){
 			$this->VALOR_TOTAL = "110.00";
 		}else{
 			$this->VALOR_TOTAL = "150.00";
 		}
-
-
 
 		$this->load->model('RealizarPagamento_model','model');
 	}

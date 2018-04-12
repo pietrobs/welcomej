@@ -41,6 +41,8 @@
 
 	<?php } if($acao == 2){  //JA PAGOU ?>
 
+	<?php if($status_pagamento == 4){  //DISPONÍVEL ?>
+
 	<div class="panel panel-success">
 		<div class="panel-heading">
 			PAGAMENTO
@@ -52,81 +54,118 @@
 		</div>
 	</div>
 
-	<?php } ?>
+	<?php }else if($status_pagamento == 6){ ?>
 
-	<div class="panel panel-default articles">
+
+	<div class="panel panel-warning">
 		<div class="panel-heading">
-			Últimas notícias
-			<span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span></div>
-			<div class="panel-body articles-container">
-				<div class="article border-bottom">
-					<div class="col-xs-12">
-						<div class="row">
-							<div class="col-xs-2 col-md-2 date">
-								<div class="large">04</div>
-								<div class="text-muted">Abril</div>
-							</div>
-							<div class="col-xs-10 col-md-10">
-								<h4><a href="#">Lorem ipsum dolor sit amet</a></h4>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at sodales nisl. Donec malesuada orci ornare risus finibus feugiat.</p>
-							</div>
-						</div>
-					</div>
-					<div class="clear"></div>
-				</div><!--End .article-->
-			</div>
-		</div><!--End .articles-->
-	</div>
-
-
-	<div class="col-md-4">
-		<div class="panel panel-default ">
-			<div class="panel-heading">
-				Linha do Tempo
-				<span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span></div>
-				<div class="panel-body timeline-container">
-					<ul class="timeline">
-						<li>
-							<div class="timeline-badge <?php if($acao == 0 || $acao == 1){ echo 'danger';}else{ echo 'success';}?>"><i class="glyphicon glyphicon-paperclip"></i></div>
-							<div class="timeline-panel">
-								<div class="timeline-heading">
-									<h4 class="timeline-title">Pagamento</h4>
-								</div>
-								<div class="timeline-body">
-									<p>Realizar o pagamento referente a entrada e taxas no evento.</p>
-									<?php if($acao == 0 || $acao == 1){ ?>
-									<a href="<?= base_url('Painel/pagamento') ?>">Você pode realizar o pagamento clicando aqui.</a>
-									<?php }else{ ?>
-									<p>Você já realizou o pagamento.</p>
-									<?php } ?>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="timeline-badge primary"><i class="glyphicon glyphicon-calendar"></i></div>
-							<div class="timeline-panel">
-								<div class="timeline-heading">
-									<h4 class="timeline-title">Selecionar as palestras/minicursos</h4>
-								</div>
-								<div class="timeline-body">
-									<p>Após a realização do pagamento, você estará apto a selecionar as palestras e minicursos de seu interesse. Lembrando que a confirmação do pagamento pode demorar até <strong>24 horas</strong>.</p>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="timeline-badge warning"><i class="glyphicon glyphicon-map-marker"></i></div>
-							<div class="timeline-panel">
-								<div class="timeline-heading">
-									<h4 class="timeline-title">Evento</h4>
-								</div>
-								<div class="timeline-body">
-									<p>O evento ocorrerá nos dias <strong>TAL, TAL e TAL</strong> na cidade de Araraquara.</p>
-									<p>Mais informações no site <a target="_blank" href="http://walcomej.nucleounesp.com.br">oficial do evento</a>.</p>
-								</div>
-							</div>
-						</li>
-					</ul>
-				</div>
+			PAGAMENTO
+		</div>
+		<div class="panel-body">
+			<p>Seu dinheiro foi devolvido!</p>
+			<p>Você recebeu de volta o valor pago.</a>
 			</div>
 		</div>
+
+		<?php }else if($status_pagamento == 7){ ?>
+		<div class="panel panel-danger">
+			<div class="panel-heading">
+				PAGAMENTO
+			</div>
+			<div class="panel-body">
+				<p>Seu pagamento foi cancelado.</p>
+				<p>Houve algum problema com o processamento do seu pagamento, entre em contato com a organização do evento para mais informações.</p>
+			</div>
+		</div>
+
+		<?php }else if($status_pagamento != 0){ ?>
+
+
+		<div class="panel panel-warning">
+			<div class="panel-heading">
+				PAGAMENTO
+			</div>
+			<div class="panel-body">
+				<p>Seu pagamento está em análise!</p>
+			</div>
+		</div>
+
+		<?php } ?>
+		<?php } ?>
+
+		<div class="panel panel-default articles">
+			<div class="panel-heading">
+				Últimas notícias
+				<span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span></div>
+				<div class="panel-body articles-container">
+					<div class="article border-bottom">
+						<div class="col-xs-12">
+							<div class="row">
+								<div class="col-xs-2 col-md-2 date">
+									<div class="large">04</div>
+									<div class="text-muted">Abril</div>
+								</div>
+								<div class="col-xs-10 col-md-10">
+									<h4><a href="http://www.welcomej.com.br" target="_blank">Palestrantes e Workshops confirmados!</a></h4>
+									<p>Já está disponível em nosso site a relação de palestrante e horários! <a href="http://www.welcomej.com.br" target="_blank">CLIQUE AQUI</a> para visualizar.</p>
+								</div>
+							</div>
+						</div>
+						<div class="clear"></div>
+					</div><!--End .article-->
+				</div>
+			</div><!--End .articles-->
+		</div>
+
+
+		<div class="col-md-4">
+			<div class="panel panel-default ">
+				<div class="panel-heading">
+					Linha do Tempo
+					<span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span></div>
+					<div class="panel-body timeline-container">
+						<ul class="timeline">
+							<li>
+								<div class="timeline-badge <?php if($acao == 0 || $acao == 1){ echo 'danger';}else{ echo 'success';}?>"><i class="glyphicon glyphicon-paperclip"></i></div>
+								<div class="timeline-panel">
+									<div class="timeline-heading">
+										<h4 class="timeline-title">Pagamento</h4>
+									</div>
+									<div class="timeline-body">
+										<p>Realizar o pagamento referente a entrada e taxas no evento.</p>
+										<?php if($acao == 0 || $acao == 1){ ?>
+										<a href="<?= base_url('Painel/pagamento') ?>">Você pode realizar o pagamento clicando aqui.</a>
+										<?php }else{ ?>
+										<p>Você já realizou o pagamento.</p>
+										<?php } ?>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="timeline-badge primary"><i class="glyphicon glyphicon-calendar"></i></div>
+								<div class="timeline-panel">
+									<div class="timeline-heading">
+										<h4 class="timeline-title">Selecionar as palestras/minicursos</h4>
+									</div>
+									<div class="timeline-body">
+										<p>Após a realização do pagamento, você estará apto a selecionar as palestras e minicursos de seu interesse. Lembrando que a confirmação do pagamento pode demorar até <strong>24 horas</strong>.</p>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="timeline-badge warning"><i class="glyphicon glyphicon-map-marker"></i></div>
+								<div class="timeline-panel">
+									<div class="timeline-heading">
+										<h4 class="timeline-title">Evento</h4>
+									</div>
+									<div class="timeline-body">
+										<p>O evento ocorrerá nos dias <strong>TAL, TAL e TAL</strong> na cidade de Araraquara.</p>
+										<p>Mais informações no site <a target="_blank" href="http://walcomej.nucleounesp.com.br">oficial do evento</a>.</p>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
 

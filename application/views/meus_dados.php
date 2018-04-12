@@ -31,27 +31,27 @@
 		<form action="<?= base_url('Congressista/atualiza') ?>" method="POST">
 			<div class="col-md-6">
 				<label for="nome">Nome completo</label>
-				<input type="text" class="form-control" name="nome" id="nome" value="<?= $congressista->nome ?>" required>
+				<input type="text" class="form-control" name="nome" id="nome" value="<?= $congressista->nome ?>" minlength="10" required>
 			</div>
 			<div class="col-md-6">
 				<label for="apelido">Apelido</label>
-				<input type="text" class="form-control" name="apelido" id="apelido" value="<?= $congressista->apelido ?>" required>
+				<input type="text" class="form-control" name="apelido" id="apelido" value="<?= $congressista->apelido ?>" maxlength="100">
 			</div>
 			<div class="col-md-6">
 				<label for="rg">RG</label>
-				<input type="text" class="form-control" name="rg" id="rg" value="<?= $congressista->rg ?>" required>
+				<input type="text" class="form-control" name="rg" id="rg" value="<?= $congressista->rg ?>" minlength="9" maxlength="20" required>
 			</div>
 			<div class="col-md-6">
 				<label for="celular">Celular</label>
-				<input type="text" class="form-control" name="celular" id="celular" value="<?= $congressista->celular ?>" required>
+				<input type="text" class="form-control" placeholder="DDD + Número" name="celular" id="celular" value="<?= $congressista->celular ?>" minlength="9" maxlength="20" required>
 			</div>
 			<div class="col-md-6">
 				<label for="cpf">CPF</label>
-				<input type="text" class="form-control" name="cpf" id="cpf" value="<?= $congressista->cpf ?>" required>
+				<input type="text" class="form-control" name="cpf" id="cpf" value="<?= $congressista->cpf ?>" minlength="11" maxlength="20" required>
 			</div>
 			<div class="col-md-6">
 				<label for="empresa_junior">Empresa Júnior</label>
-				<input type="text" class="form-control" name="empresa_junior" id="empresa_junior" value="<?= $congressista->empresa_junior ?>" required>
+				<input type="text" class="form-control" name="empresa_junior" id="empresa_junior" value="<?= $congressista->empresa_junior ?>" minlength="3" maxlength="100" required>
 			</div>
 			<div class="col-md-6">
 				<label for="filiada">Sua EJ é filiada?</label>
@@ -69,7 +69,7 @@
 			</div>
 			<div class="col-md-12" id="div_descricao_restricao">
 				<label for="descricao_restricao">Quais?</label>
-				<textarea name="descricao_restricao" id="descricao_restricao" cols="30" rows="10" class="form-control"><?= $congressista->descricao_restricao_alimentar ?></textarea>
+				<textarea name="descricao_restricao" id="descricao_restricao" cols="30" rows="10" class="form-control" maxlength="500"><?= $congressista->descricao_restricao_alimentar ?></textarea>
 			</div>
 
 
@@ -83,16 +83,16 @@
 	</div>
 </div>
 
-<script src="<?= base_url('assets/js/jquery.maskedinput.min.js') ?>"></script>
+<!-- <script src="<?= base_url('assets/js/jquery.maskedinput.min.js') ?>"></script> -->
 
 <script>
 	var div_descricao_restricao = $('#div_descricao_restricao');
 	var select_restricao = $('#restricao');
 
 	$(document).ready(function(){
-		$('#rg').mask('99.999.999-9');
-		$('#cpf').mask('999.999.999-99');
-		$('#celular').mask('(99) 99999-9999');
+		// $('#rg').mask('99.999.999-9');
+		// $('#cpf').mask('999.999.999-99');
+		// $('#celular').mask('(99) 99999-9999');
 
 		if(select_restricao.val() == 1){
 			div_descricao_restricao.show();

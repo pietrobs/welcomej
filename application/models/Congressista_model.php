@@ -44,6 +44,26 @@ class Congressista_model extends CI_Model{
 		}
 	}
 
+	public function getStatusPagamento(){
+		$this->db->select('status');
+		$this->db->where('id_usuario',$this->session->usuario['id']);
+		return $this->db->get('pagamento')->row()->status;
+	}
+
+	public function nova_senha($dados){
+		$this->db->where($dados);
+		$congressista = $this->db->get($this->table)->row();
+
+		$this->db->flush_cache();
+		$nova_senha = md5($congressista->rg.date('h:m:s')."welcomej2018");
+		$nova_senha = substr($nova_senha,0,6);
+		$nova_senha = strtoupper($nova_senha);
+		$dados_update['senha'] = md5($nova_senha);
+
+		$this->session->set_flashdata('sucesso','Sua senha agora é: '.$nova_senha);
+		$this->db->where('id',$congressista->id);
+		return $this->db->update($this->table,$dados_update);
+	}
 
 	public function getPagamento(){
 		$this->db->where('id_usuario',$this->session->usuario['id']);
@@ -51,37 +71,49 @@ class Congressista_model extends CI_Model{
 		return $this->db->get('pagamento')->row();
 	}
 
+		public function insert_pagamento($foto_comprovante, $id){
+			$data['foto_comprovante'] = $foto_comprovante;
+    		$data['id_usuario'] = $id;
+    		return $this->db->insert('pagamento', $data);
+	}
 
-	//ADMIN AREA
-	public function num_rows(searchFilter $filter){
-    $this->db = $filter->numRows($this->db);
-    return $this->db->get($this->table)->num_rows();
-  }
+	public function atualizaJaPagou($id){
+		$this->db->where('id', $id);
+		$dados['ja_pagou'] = 1;
+		return $this->db->update('congressista', $dados);
+	}
 
-  public function list_filter(searchFilter $filter){
-      $this->db = $filter->applyFilter($this->db);
-      $this->db->select($this->table . '.*');
-      $this->db->from($this->table);
-      $result = $this->db->get()->result_array();
-      return $result;
-  }
+	//ADMIN AREA 
+  public function num_rows(searchFilter $filter){ 
+    $this->db = $filter->numRows($this->db); 
+    return $this->db->get($this->table)->num_rows(); 
+  } 
+ 
+  public function list_filter(searchFilter $filter){ 
+      $this->db = $filter->applyFilter($this->db); 
+      $this->db->select($this->table . '.*'); 
+      $this->db->from($this->table); 
+      $result = $this->db->get()->result_array(); 
+      return $result; 
+  } 
+ 
+  public function defaultFilter(){ 
+      return new searchFilter($this->table, 
+                              "nome", 
+                              searchFilter::ASCENDANT, 
+                              0, 
+                              20, 
+                              "nome"); 
+  } 
+ 
+  public function getById($id){ 
+    $this->db->where('id',$id); 
+    return $this->db->get($this->table)->row(); 
+  } 
 
-  public function defaultFilter(){
-      return new searchFilter($this->table,
-                              "nome",
-                              searchFilter::ASCENDANT,
-                              0,
-                              20,
-                              "nome");
-  }
+  public function setar_pagamento($id, $flag){ 
+    $this->db->where('id', $id); 
+    return $this->db->update($this->table, ['ja_pagou' => $flag]); 
+  } 
 
-  public function getById($id){
-  	$this->db->where('id',$id);
-		return $this->db->get($this->table)->row();
-  }
-
-  public function setar_pagamento($id, $flag){
-  	$this->db->where('id', $id);
-  	return $this->db->update($this->table, ['ja_pagou' => $flag]);
-  }
 }
