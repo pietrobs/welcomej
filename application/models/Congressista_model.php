@@ -50,4 +50,38 @@ class Congressista_model extends CI_Model{
 		$this->db->join('status_pagamento','pagamento.id_status_pagamento = status_pagamento.id');
 		return $this->db->get('pagamento')->row();
 	}
+
+
+	//ADMIN AREA
+	public function num_rows(searchFilter $filter){
+    $this->db = $filter->numRows($this->db);
+    return $this->db->get($this->table)->num_rows();
+  }
+
+  public function list_filter(searchFilter $filter){
+      $this->db = $filter->applyFilter($this->db);
+      $this->db->select($this->table . '.*');
+      $this->db->from($this->table);
+      $result = $this->db->get()->result_array();
+      return $result;
+  }
+
+  public function defaultFilter(){
+      return new searchFilter($this->table,
+                              "nome",
+                              searchFilter::ASCENDANT,
+                              0,
+                              20,
+                              "nome");
+  }
+
+  public function getById($id){
+  	$this->db->where('id',$id);
+		return $this->db->get($this->table)->row();
+  }
+
+  public function setar_pagamento($id, $flag){
+  	$this->db->where('id', $id);
+  	return $this->db->update($this->table, ['ja_pagou' => $flag]);
+  }
 }
