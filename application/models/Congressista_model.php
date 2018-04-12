@@ -71,7 +71,7 @@ class Congressista_model extends CI_Model{
 		return $this->db->get('pagamento')->row();
 	}
 
-		public function insert_pagamento($foto_comprovante, $id){
+	public function insert_pagamento($foto_comprovante, $id){
 			$data['foto_comprovante'] = $foto_comprovante;
     		$data['id_usuario'] = $id;
     		return $this->db->insert('pagamento', $data);

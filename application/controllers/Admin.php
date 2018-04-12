@@ -9,6 +9,7 @@ class Admin extends CI_Controller {
     parent::__construct();
     $this->load->model("minicurso_model", "eventoModel");
     $this->load->model("congressista_model", "congressistaModel");
+    $this->load->model("comprovante_model", "comprovanteModel");
     $this->load->library("ListMaker");
   }
 
@@ -85,6 +86,45 @@ class Admin extends CI_Controller {
     $this->load->view('admin/header-admin');
     $this->load->view('admin/congressista/congressista', $dados);
     $this->load->view('admin/congressista/modal');
+    $this->load->view('admin/footer-admin');
+  }
+
+  public function comprovantes($attribute = 'nome', 
+                                $order_by = 'ASC', 
+                                $quantidade = 10, 
+                                $inicio = 0, 
+                                $nome = ''){
+
+    $this->load->library('pagination');
+    $searchFilter = $this->comprovanteModel->defaultFilter();
+
+    if(count($this->input->post()) != 0){ 
+        $searchFilter->setAttribute($this->input->post('attribute'));
+        $searchFilter->setOrderBy($this->input->post('order_by'));
+        $searchFilter->setLimit($this->input->post('quantidade'));
+        $searchFilter->setLike($this->input->post('search_by'));
+    }else{
+        $searchFilter->setAttribute($attribute);
+        $searchFilter->setOrderBy($order_by);
+        $searchFilter->setLimit($quantidade);
+        $searchFilter->setOffset($inicio);
+        $searchFilter->setLike($nome);
+    }
+
+    //echo $searchFilter->getAttribute();
+    $comprovantes = $this->comprovanteModel->list_filter($searchFilter); 
+    foreach ($comprovantes as $key => $comprovante) {
+      $comprovantes[$key]["foto_comprovante"] = base_url("uploads/comprovante/".$comprovante["foto_comprovante"]);
+    }
+    $dados['congressistas']  = $comprovantes;
+    $dados['paginacao'] = $this->listmaker->getLinks($searchFilter, 
+                                                     $this->comprovanteModel);
+    $dados['filtros'] = $searchFilter;
+
+    $this->load->view('admin/html-header-admin');
+    $this->load->view('admin/header-admin');
+    $this->load->view('admin/comprovantes/comprovantes', $dados);
+    $this->load->view('admin/comprovantes/modal');
     $this->load->view('admin/footer-admin');
   }
 

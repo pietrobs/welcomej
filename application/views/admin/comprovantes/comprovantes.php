@@ -72,16 +72,15 @@
                     <thead>
                       <tr>
                           <th><i class="fa fa-font"></i> Nome congressista</th>
-                          <th class="hidden-phone"><i class="far fa-user"></i> Data inscrição</th>                                  
+                          <th>Status</th>
                           <th></th>
                       </tr>
                     </thead>
                     <tbody>
-                      <?php foreach ($congressistas as $key => $congressista) :?>
+                      <?php foreach ($congressistas as $key => $congressista) : ?>
                         <tr>
                           <td><?=$congressista["nome"]?></td>
-                          <td><?=$congressista["data_registro"]?></td>
-                      
+                          <td><?=($congressista["status"] == 0) ? "Pendente" : (($congressista["status"] == 1) ? "Recusado" : "Aprovado") ?></td>
                           <td>
                             <button class = "btn btn-primary btn-xs" 
                                     data-toggle = "modal" 
@@ -89,17 +88,9 @@
                                     data-type = "update"
                                     data-id = "<?=$congressista["id"]?>"
                                     data-nome = "<?=$congressista["nome"]?>"
-                                    data-email = "<?=$congressista["email"]?>"
-                                    data-celular = "<?=$congressista["celular"]?>"
-                                    data-data_registro  = "<?=$congressista["data_registro"]?>"
-                                    data-apelido = "<?=$congressista["apelido"]?>"
-                                    data-rg = "<?=$congressista["rg"]?>"
-                                    data-cpf = "<?=$congressista["cpf"]?>"
-                                    data-restricao_alimentar = "<?=$congressista["restricao_alimentar"]?>"
-                                    data-descricao_restricao_alimentar = "<?=$congressista["descricao_restricao_alimentar"]?>"
+                                    data-foto_comprovante = "<?=$congressista["foto_comprovante"]?>"
                                     data-filiado_nucleo = "<?=$congressista["filiado_nucleo"]?>"
                                     data-empresa_junior = "<?=$congressista["empresa_junior"]?>"
-                                    data-ja_pagou = "<?=$congressista["ja_pagou"]?>"
                                 <i class="fas fa-pencil-alt"></i>
                                 Visualizar
                             </button>
@@ -149,46 +140,32 @@
       var button = $(event.relatedTarget)
       var action = button.data('type')
       var modal = $(this)
+      var base_url_aprovar = "<?=base_url("Comprovante/aprovar/")?>"
+      var base_url_recusar = "<?=base_url("Comprovante/recusar/")?>"
       //$(".id_imgsremove").html("")
       //$("#imgview").html("")
       if(action == "update")
       {
         console.log("UPDATE");
         var id = button.data('id') // Extract info from data-* attributes
-        modal.find('#title_congressista_modal').text("Visualizar congressista")
-        modal.find('#mandabala').text("Salvar")
+        img = button.data("foto_comprovante");
+        modal.find('#title_congressista_modal').text("Visualizar comprovante")
         modal.find('#id').hide()
-        modal.find('#form_eventos').attr("action", "<?=base_url('Congressista/setar_pagamento')?>")
         modal.find('#id').val(button.data("id"))
         modal.find('#nome').val(button.data("nome"))
-        modal.find('#apelido').val(button.data("apelido"))
-        modal.find('#email').val(button.data("email"))
-        modal.find('#celular').val(button.data("celular"))
-        modal.find('#cpf').val(button.data("cpf"))
+        modal.find('#img_ref').attr("href", button.data("foto_comprovante"))
+        modal.find('#img_comprovante').attr("src", button.data("foto_comprovante"))
+        if(img.split(".")[1] == "pdf"){
+          modal.find('#img_ref').hide();
+          modal.find("#pdf_ref").show();
+          modal.find('#pdf_ref').attr("href", button.data("foto_comprovante"))
+        }else{
+          modal.find('#img_ref').show();
+          modal.find("#pdf_ref").hide();
+        }
+        modal.find('#aprovar').attr("href", base_url_aprovar + button.data("id"))
+        modal.find('#recusar').attr("href", base_url_recusar + button.data("id"))
         modal.find('#empresa_junior').val(button.data("empresa_junior"))
-        modal.find('#restricao_alimentar').val(button.data("restricao_alimentar"))
-        modal.find('#descricao_restricao_alimentar').val(button.data("descricao_restricao_alimentar"))
-        ja_pagou = button.data("ja_pagou");
-        modal.find('#ja_pagou option').each(function(index){
-          if(ja_pagou == 0 && $(this).val() == "1"){
-            $(this).attr("disabled", "disabled");
-          }else if(ja_pagou == 0){
-            $(this).removeAttr("disabled", "");
-          }
-
-          if(ja_pagou == 1){
-            $(this).attr("disabled", "disabled");
-          }
-
-          if(ja_pagou == 2 && $(this).val() == "1"){
-            $(this).attr("disabled", "disabled");
-            console.log($(this).val());
-          }else if(ja_pagou ==2){
-            $(this).removeAttr("disabled");
-          }
-
-        });
-        modal.find('#ja_pagou').val(button.data("ja_pagou"))
       }
     })
   });

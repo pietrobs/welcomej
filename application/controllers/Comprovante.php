@@ -6,6 +6,17 @@ class Comprovante extends CI_Controller {
   public function __construct(){
     parent::__construct();
     $this->load->model('congressista_model','modelcongressista');
+    $this->load->model('comprovante_model','modelComprovante');
+  }
+
+  public function aprovar($id){
+    $this->modelComprovante->setComprovanteStatus($id, 2);
+    redirect("Admin/comprovantes");
+  }
+
+  public function recusar($id){
+    $this->modelComprovante->setComprovanteStatus($id, 1);
+    redirect("Admin/comprovantes");
   }
 
 }
