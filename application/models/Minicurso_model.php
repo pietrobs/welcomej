@@ -37,7 +37,7 @@ class Minicurso_model extends CI_Model{
   public function quantidadeInscritos($id){
     $this->db->where('id_palestra',$id);
     $this->db->from('congressista_palestra');
-    return $this->db->count_all_results() != 0;
+    return $this->db->count_all_results();
   }
 
   public function num_rows(searchFilter $filter){

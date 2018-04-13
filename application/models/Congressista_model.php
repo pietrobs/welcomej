@@ -96,6 +96,18 @@ class Congressista_model extends CI_Model{
       $result = $this->db->get()->result_array(); 
       return $result; 
   } 
+
+  public function list_filter_relatorio(searchFilter $filter , $pagou = FALSE){ 
+      if($pagou){
+      	$this->db->order_by("ja_pagou", "DESC");
+      }
+      $this->db = $filter->applyFilter($this->db); 
+      $this->db->select($this->table . '.*'); 
+      $this->db->from($this->table); 
+      $result = $this->db->get()->result_array(); 
+      echo $this->db->last_query();
+      return $result; 
+  } 
  
   public function defaultFilter(){ 
       return new searchFilter($this->table, 

@@ -29,6 +29,15 @@ class RealizarPagamento_model extends CI_Model
 		return $this->db->update('pagamento', $dados);
 	}
 
+	public function getPagamentos(){
+		//$this->db->where("status", 2);
+		//$this->db->join("congressista", "pagamento.id_usuario = congressista.id");
+		//$this->db->from("pagamento");
+		return $this->db->query("SELECT congressista.filiado_nucleo, COUNT(pagamento.id) as quantidade FROM pagamento JOIN congressista ON id_usuario = congressista.id WHERE status = 2 GROUP BY congressista.filiado_nucleo ASC ")->result_array();
+	}
+
+	//SELECT congressista.filiado_nucleo, COUNT(pagamento.id) as quantidade FROM pagamento JOIN congressista ON id_usuario = congressista.id GROUP BY congressista.filiado_nucleo ASC
+
 
 	
 }

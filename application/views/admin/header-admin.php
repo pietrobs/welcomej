@@ -109,67 +109,40 @@
 
 
                <li class="sub-menu">
-                <a href="<?= base_url('Noticia/visualizar') ?>" >
+                <a href="<?= base_url('Admin/eventos') ?>" >
                   <i class="fas fa-newspaper" style="margin-right: 5px;"></i>
-                  <span>Noticia</span>
+                  <span>Eventos</span>
                 </a>
               </li>
          
 
               <li class="sub-menu">
-                <a href="<?= base_url('Projeto/visualizar') ?>" >
+                <a href="<?= base_url('Admin/congressistas') ?>" >
                   <i class="fas fa-briefcase" style="margin-right: 5px;"></i>
-                  <span>Projeto</span>
+                  <span>Congressistas</span>
                 </a>
               </li>
 
               <li class="sub-menu">
-                <a href="<?= base_url('Diretoria/visualizar') ?>" >
+                <a href="<?= base_url('Admin/comprovantes') ?>" >
                   <i class="fa fa-users" style="margin-right: 5px;"></i>
-                  <span>Diretoria</span>
+                  <span>Comprovantes</span>
                 </a>
               </li>
 
               <li class="sub-menu">
-                <a href="<?= base_url('Servico/visualizar') ?>" >
+                <a href="<?= base_url('Admin/relatorios') ?>" >
                   <i class="fa fa-bolt" style="margin-right: 5px;"></i>
-                  <span>Serviço</span>
+                  <span>Relatórios</span>
                 </a>
               </li>
 
               <li class="sub-menu">
-                <a href="<?= base_url('Membro/visualizar') ?>" >
+                <a href="<?= base_url('Admin/presencaEvento') ?>" >
                   <i class="fas fa-user" style="margin-right: 5px;"></i>
-                  <span>Membro</span>
+                  <span>Presença</span>
                 </a>
               </li>
-
-              <li class="sub-menu">
-                <a href="<?= base_url('Sobre_controller') ?>" >
-                  <i class="fas fa-book" style="margin-right: 5px;"></i>
-                  <span>Sobre</span>
-                </a>
-              </li>
-              <li class="sub-menu">
-                <a href="<?= base_url('Usuario/visualizar') ?>" >
-                  <i class="far fa-user" style="margin-right: 5px;"></i>
-                  <span>Usuário</span>
-                </a>
-              </li>
-
-              <li class="sub-menu">
-                <a href="<?= base_url('Parceiro/visualizar') ?>" >
-                  <i class="fas fa-briefcase" style="margin-right: 5px;"></i>
-                  <span>Parceiro</span>
-                </a>
-              </li>
-
-              <li class="sub-menu">
-                <a href="<?= base_url('Configuracao_controller') ?>" >
-                  <i class="fas fa-cogs" style="margin-right: 5px;"></i>
-                  <span>Configuração</span>
-                </a>
-              </li>      
           </ul>
           <!-- sidebar menu end-->
         </div>

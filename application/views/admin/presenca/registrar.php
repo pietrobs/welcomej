@@ -1,6 +1,9 @@
 <section id="main-content">
     <section class="wrapper site-min-height">
-      <h2><i class="fa fa-angle-right"></i>Listagem de Eventos
+      <h2><i class="fa fa-angle-right"></i>Listagem de Eventos <b>></b> Registrar Presença
+        <a class ="btn btn-primary btn-xs" href="<?=base_url("Admin/presencaEvento")?>">
+          <i class="fas fa-long-arrow-alt-left"></i> Voltar
+        </a>
       </h2>
       <div class="row mt">
         <div class="col-md-12">

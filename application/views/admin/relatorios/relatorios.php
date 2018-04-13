@@ -10,10 +10,39 @@
                       <div class="col-sm-4">
                         <h3><b>Evento:</b></h3>
                         <div class="form-check">
-                            <input type="checkbox" name="check_list[]" value="check1"><label>check1</label>
+                            <input type="checkbox" name="evento_list[]" value="finanças"><label>Finanças</label>
                         </div>
                         <div class="form-check">
-                          <input type="checkbox" name="check_list[]" value="check1"><label>check1</label>
+                          <input type="checkbox" name="evento_list[]" value="congressista" id="congressistaOption"><label>Congressistas</label>
+                          <div style="padding-left: 12px; display: none;" id="fieldsCongressista">
+                            <div class="form-check">
+                              <input type="checkbox" name="congressistas_list[]" value="1"><label>Nome</label>
+                            </div>
+                            <div class="form-check">
+                              <input type="checkbox" name="congressistas_list[]" value="2"><label>Email</label>
+                            </div>
+                            <div class="form-check">
+                              <input type="checkbox" name="congressistas_list[]" value="3"><label>CPF</label>
+                            </div>
+                            <div class="form-check">
+                              <input type="checkbox" name="congressistas_list[]" value="4"><label>RG</label>
+                            </div>
+                            <div class="form-check">
+                              <input type="checkbox" name="congressistas_list[]" value="5"><label>Empresa Junior</label>
+                            </div>
+                            <div class="form-check">
+                              <input type="checkbox" name="congressistas_list[]" value="6"><label>Filiada</label>
+                            </div>
+                            <div class="form-check">
+                              <input type="checkbox" name="congressistas_list[]" value="7"><label>Possui Restrição Alimentar</label>
+                            </div>
+                            <div class="form-check">
+                              <input type="checkbox" name="congressistas_list[]" value="8"><label>Restrições Alimentares</label>
+                            </div>
+                            <div class="form-check">
+                              <input type="checkbox" name="congressistas_list[]" value="9"><label>Pagou</label>
+                            </div>
+                          </div>
                         </div>
                       </div>
                       <div class="col-sm-4">
@@ -51,3 +80,12 @@
             </div>
     </section>
   </section>
+  
+  <script src="<?= base_url('assets/js/jquery.js')?>"></script>  
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $("#congressistaOption").change(function(){
+        $("#fieldsCongressista").toggle();
+      });
+    })
+  </script>

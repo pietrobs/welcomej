@@ -1,13 +1,6 @@
 <section id="main-content">
           <section class="wrapper site-min-height">
-            <h2><i class="fa fa-angle-right"></i>Listagem de Eventos
-                <button class       ="btn btn-primary btn-xs" 
-                        data-toggle ="modal" 
-                        data-target ="#congressista_modal" 
-                        data-type   ="new"
-                >
-                  <i class="fas fa-plus-square"></i> Novo
-                </button>
+            <h2><i class="fa fa-angle-right"></i>Listagem de Comprovantes
             </h2>
             <div class="row mt">
               <div class="col-md-12">
