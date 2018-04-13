@@ -60,11 +60,17 @@ class searchFilter{
     public function getLike() { return $this->like; }
     public function getDB() { return $this->dbTable;}
 
-    public function applyFilter($db){
-        $db->order_by("$this->dbTable.$this->attribute", $this->orderBy);
+    public function applyFilter($db, $currentDB = TRUE){
+        if($currentDB)
+            $db->order_by("$this->dbTable.$this->attribute", $this->orderBy);
+        else
+            $db->order_by("$this->attribute", $this->orderBy);
         $db->limit($this->limit, $this->offset);
         if($this->likeColumn != NULL && $this->like != NULL){
-            $db->like("$this->dbTable.$this->likeColumn", $this->like);
+            if($currentDB)
+                $db->like("$this->dbTable.$this->likeColumn", $this->like);
+            else
+                $db->like("$this->likeColumn", $this->like);
         }
         //print_r($db->get_compiled_select());
         return $db;

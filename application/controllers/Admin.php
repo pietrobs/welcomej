@@ -128,6 +128,61 @@ class Admin extends CI_Controller {
     $this->load->view('admin/footer-admin');
   }
 
+  public function relatorios(){
+
+    $dados['palestras'] = $this->eventoModel->list_filter($this->eventoModel->defaultFilter());
+    $this->load->view('admin/html-header-admin');
+    $this->load->view('admin/header-admin');
+    $this->load->view('admin/relatorios/relatorios', $dados);
+    $this->load->view('admin/footer-admin'); 
+  }
+
+  public function presencaEvento($idPalestra = NULL){
+    if(is_null($idPalestra)){
+      $searchFilter = $this->eventoModel->defaultFilter();
+      if(count($this->input->post()) != 0){ 
+        $searchFilter->setAttribute($this->input->post('attribute'));
+        $searchFilter->setOrderBy($this->input->post('order_by'));
+        $searchFilter->setLimit($this->input->post('quantidade'));
+        $searchFilter->setLike($this->input->post('search_by'));
+      }
+
+      $dados['eventos']  = $this->eventoModel->list_filter($searchFilter); 
+      $dados['paginacao'] = $this->listmaker->getLinks($searchFilter, 
+                                                       $this->eventoModel);
+      $dados['filtros'] = $searchFilter;
+
+      $this->load->view('admin/html-header-admin');
+      $this->load->view('admin/header-admin');
+      $this->load->view('admin/presenca/presenca', $dados);
+      $this->load->view('admin/footer-admin'); 
+    }else{
+      $searchFilter = $this->congressistaModel->defaultFilter();
+      if(count($this->input->post()) != 0){ 
+        $searchFilter->setAttribute($this->input->post('attribute'));
+        $searchFilter->setOrderBy($this->input->post('order_by'));
+        $searchFilter->setLimit($this->input->post('quantidade'));
+        $searchFilter->setLike($this->input->post('search_by'));
+      }else{
+        $searchFilter->setAttribute("presenca");
+      }
+
+      $dados['inscritos']  = $this->eventoModel->list_filter_inscritos($searchFilter, $idPalestra); 
+      $dados['paginacao'] = $this->listmaker->getLinks($searchFilter, 
+                                                       $this->eventoModel);
+      $dados['filtros'] = $searchFilter;
+      $dados['idPalestra'] = $idPalestra;
+
+      $this->load->view('admin/html-header-admin');
+      $this->load->view('admin/header-admin');
+      $this->load->view('admin/presenca/registrar', $dados);
+      $this->load->view('admin/footer-admin'); 
+    }
+  }
+
+  public function do_upload_image($name, $id)
+  {    
+  }
 }
 
 ?>

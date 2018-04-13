@@ -142,14 +142,13 @@
       var modal = $(this)
       var base_url_aprovar = "<?=base_url("Comprovante/aprovar/")?>"
       var base_url_recusar = "<?=base_url("Comprovante/recusar/")?>"
-      //$(".id_imgsremove").html("")
-      //$("#imgview").html("")
+
       if(action == "update")
       {
         console.log("UPDATE");
         var id = button.data('id') // Extract info from data-* attributes
         img = button.data("foto_comprovante");
-        modal.find('#title_congressista_modal').text("Visualizar comprovante")
+        modal.find('#title_congressista_modal').text("Visualizar comprovantes")
         modal.find('#id').hide()
         modal.find('#id').val(button.data("id"))
         modal.find('#nome').val(button.data("nome"))

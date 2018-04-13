@@ -17,11 +17,14 @@ class Minicurso extends CI_Controller {
     $dados["dia_palestra"] = $this->input->post("dia_palestra");
     $dados["periodo_palestra"] = $this->input->post("periodo_palestra");
 
+
     if($this->modelminicurso->insert($dados)){
       $this->session->set_flashdata('sucesso','O cadastro foi efetuado!');
     }else{
       $this->session->set_flashdata('erro','Houve um erro ao efetuar o cadastro!');
     }
+
+    $this->do_upload_image("imagem_palestra", $this->db->insert_id());
 
     redirect(base_url("Admin/eventos"));
   }
@@ -41,6 +44,8 @@ class Minicurso extends CI_Controller {
       $this->session->set_flashdata('erro','Houve um erro ao atualizar o evento!');
     }
 
+    $this->do_upload_image("imagem_palestra", $this->input->post("id"));
+
     redirect(base_url("Admin/eventos"));
   }
 
@@ -52,5 +57,22 @@ class Minicurso extends CI_Controller {
     }
 
     redirect(base_url("Admin/eventos"));
+  }
+
+  public function do_upload_image($name, $id)
+  {
+    $config['upload_path']          = 'uploads/';
+    $config['allowed_types']        = 'jpg|png';
+    $config['max_size']             = 4096;
+    $config['overwrite'] = TRUE;
+    $extension = explode(".", $_FILES[$name]["name"])[1];
+    $_FILES[$name]["name"] = "$id.$extension"; 
+
+    $this->load->library('upload', "$id");
+    $this->upload->initialize($config);
+    if ( ! $this->upload->do_upload($name))
+    {      
+      return $this->upload->display_errors();
+    }
   }
 }

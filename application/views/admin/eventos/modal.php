@@ -5,7 +5,7 @@
               <h4 class="modal-title" id="title_events_modal"></h4>
           </div>
           <div class="modal-body" id="modalInsert">
-              <form method="POST" action="<?=base_url("Minicurso/insere")?>" id="form_eventos" enctype="">
+              <form method="POST" action="<?=base_url("Minicurso/insere")?>" id="form_eventos" enctype="multipart/form-data">
 
                 <input type="hidden" id="id" name="id" readonly="readonly">
                 <div class="form-group">
@@ -44,6 +44,9 @@
                     <option value="1">Noite</option>
                   </select>
                 </div>          
+                <div class="form-group">
+                  <input type="file" name="imagem_palestra" id="imagem_palestra">
+                </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-round btn-theme" id="mandabala" value="submit"></button>
                     <button type="button" class="btn btn-round btn-secundary" data-dismiss="modal"> Fechar </button>
