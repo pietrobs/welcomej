@@ -41,8 +41,8 @@ class Minicurso_model extends CI_Model{
   }
 
   public function num_rows(searchFilter $filter){
-    $this->db = $filter->numRows($this->db);
-    return $this->db->get($this->table)->num_rows();
+    $this->db = $filter->numRows($this->db, false);
+    return $this->db->get($filter->getDbTable())->num_rows();
   }
 
   public function list_filter(searchFilter $filter){
@@ -60,6 +60,11 @@ class Minicurso_model extends CI_Model{
       $this->db->from('congressista_palestra');
       $result = $this->db->get()->result_array();
       return $result;
+  }
+
+  public function paginacaoPresenca(){
+    $this->db->join('congressista', 'congressista_palestra.id_congressista = congressista.id', "INNER");
+    return $this;
   }
 
     public function defaultFilter(){

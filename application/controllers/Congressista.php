@@ -140,5 +140,19 @@ class Congressista extends CI_Controller {
 		redirect(base_url());
 	}
 
+	public function setar_pagamento(){
+		print_r($this->input->post());
+		$congressista = $this->modelcongressista->getById($this->input->post("id"));
+		if($congressista->ja_pagou == $this->input->post("ja_pagou")){
+			redirect("Admin/congressistas");
+		}
+
+		if($this->input->post("ja_pagou") != 1){
+			$this->modelcongressista->setar_pagamento($this->input->post("id"), $this->input->post("ja_pagou"));
+		}
+		
+		redirect("Admin/congressistas");
+	}
+
 
 }

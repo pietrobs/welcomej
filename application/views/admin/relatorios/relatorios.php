@@ -45,7 +45,7 @@
                           </div>
                         </div>
                       </div>
-                      <div class="col-sm-4">
+                      <div class="col-sm-6">
                         <h3><b>Palestras/Minicursos:</b></h3>
                         <?php foreach ($palestras as $key => $palestra) : ?>
                         <div class="form-check">

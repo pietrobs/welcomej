@@ -26,6 +26,14 @@ class searchFilter{
         $this->like = $like;
     }
 
+    public function setDbTable($dbTable){
+        $this->dbTable = $dbTable;
+    }
+
+    public function getDbTable(){
+        return $this->dbTable;
+    }
+
     public function setLimit($newLimit){
         $this->limit = $newLimit;
     }
@@ -61,24 +69,31 @@ class searchFilter{
     public function getDB() { return $this->dbTable;}
 
     public function applyFilter($db, $currentDB = TRUE){
-        if($currentDB)
+        if($currentDB){
             $db->order_by("$this->dbTable.$this->attribute", $this->orderBy);
-        else
+        }
+        else{
             $db->order_by("$this->attribute", $this->orderBy);
+        }
         $db->limit($this->limit, $this->offset);
         if($this->likeColumn != NULL && $this->like != NULL){
-            if($currentDB)
+            if($currentDB){
                 $db->like("$this->dbTable.$this->likeColumn", $this->like);
-            else
+            }
+            else{
                 $db->like("$this->likeColumn", $this->like);
+            }
         }
         //print_r($db->get_compiled_select());
         return $db;
     }
 
-    public function numRows($db){
+    public function numRows($db, $currentDB = TRUE){
         if($this->like != NULL && $this->like != "")
-            $db->like("$this->dbTable.$this->likeColumn", $this->like);
+            if($currentDB)
+                $db->like("$this->dbTable.$this->likeColumn", $this->like);
+            else
+                $db->like("$this->likeColumn", $this->like);
 
         return $db;
     }

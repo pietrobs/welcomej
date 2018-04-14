@@ -52,11 +52,6 @@
                     <textarea class="form-control" name="descricao_restricao_alimentar" id="descricao_restricao_alimentar" rows="10" readonly="true"></textarea>
                   </div>
                   <div class="form-group col-md-12">
-                    <a href="">
-                      <img src="" style="width: 300px; height: 300px;">
-                    </a>
-                  </div>
-                  <div class="form-group col-md-12">
                     <label>Estado de pagamento</label>
                     <select class="form-control" name="ja_pagou" id="ja_pagou">
                       <option value="2">Isento</option>

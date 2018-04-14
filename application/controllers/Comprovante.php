@@ -14,8 +14,15 @@ class Comprovante extends CI_Controller {
     redirect("Admin/comprovantes");
   }
 
-  public function recusar($id){
-    $this->modelComprovante->setComprovanteStatus($id, 1);
+  public function recusar($id = 0, $justificativa = ""){
+    if(null !== ($this->input->post("id"))){
+      $id = $this->input->post("id");
+    }
+    if(null !== ($this->input->post("justificativa"))){
+      $justificativa = $this->input->post("justificativa");
+    }
+
+    $this->modelComprovante->setComprovanteStatus($id, 1, $justificativa);
     redirect("Admin/comprovantes");
   }
 

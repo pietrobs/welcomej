@@ -1,13 +1,6 @@
 <section id="main-content">
           <section class="wrapper site-min-height">
-            <h2><i class="fa fa-angle-right"></i>Listagem de Eventos
-                <button class       ="btn btn-primary btn-xs" 
-                        data-toggle ="modal" 
-                        data-target ="#congressista_modal" 
-                        data-type   ="new"
-                >
-                  <i class="fas fa-plus-square"></i> Novo
-                </button>
+            <h2><i class="fa fa-angle-right"></i>Listagem de Congressistas                
             </h2>
             <div class="row mt">
               <div class="col-md-12">
@@ -44,8 +37,7 @@
                         <label class="col-sm-12 col-sm-12 control-label"  style="margin-top: 10px">Procurar por:</label>
                         <input type="text" name="search_by" class="form-control round-form">
                       </div>
-                    <div class="col-sm-2">
-                      <br/>
+                    <div class="col-sm-2" style="padding-top: 32px;">
                       <button type="submit" class="btn col-sm-12 btn-round btn-theme" value="Pesquisar">Pesquisar </button>
                     </div>
                   </div>
@@ -178,6 +170,9 @@
 
           if(ja_pagou == 1){
             $(this).attr("disabled", "disabled");
+            if(index == 2){
+              $(this).removeAttr("disabled");
+            }
           }
 
           if(ja_pagou == 2 && $(this).val() == "1"){

@@ -89,7 +89,7 @@ class Admin extends CI_Controller {
     $this->load->view('admin/footer-admin');
   }
 
-  public function comprovantes($attribute = 'nome', 
+  public function comprovantes($attribute = 'status', 
                                 $order_by = 'ASC', 
                                 $quantidade = 10, 
                                 $inicio = 0, 
@@ -117,6 +117,7 @@ class Admin extends CI_Controller {
       $comprovantes[$key]["foto_comprovante"] = base_url("uploads/comprovante/".$comprovante["foto_comprovante"]);
     }
     $dados['congressistas']  = $comprovantes;
+    $this->comprovanteModel->join();
     $dados['paginacao'] = $this->listmaker->getLinks($searchFilter, 
                                                      $this->comprovanteModel);
     $dados['filtros'] = $searchFilter;
@@ -125,6 +126,7 @@ class Admin extends CI_Controller {
     $this->load->view('admin/header-admin');
     $this->load->view('admin/comprovantes/comprovantes', $dados);
     $this->load->view('admin/comprovantes/modal');
+    $this->load->view('admin/comprovantes/modal_recusar');
     $this->load->view('admin/footer-admin');
   }
 
@@ -168,8 +170,9 @@ class Admin extends CI_Controller {
       }
 
       $dados['inscritos']  = $this->eventoModel->list_filter_inscritos($searchFilter, $idPalestra); 
+      $searchFilter->setDbTable("congressista_palestra");
       $dados['paginacao'] = $this->listmaker->getLinks($searchFilter, 
-                                                       $this->eventoModel);
+                                                       $this->eventoModel->paginacaoPresenca());
       $dados['filtros'] = $searchFilter;
       $dados['idPalestra'] = $idPalestra;
 

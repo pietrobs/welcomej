@@ -46,8 +46,7 @@
                         <label class="col-sm-12 col-sm-12 control-label"  style="margin-top: 10px">Procurar por:</label>
                         <input type="text" name="search_by" class="form-control round-form">
                       </div>
-                    <div class="col-sm-2">
-                      <br/>
+                    <div class="col-sm-2" style="padding-top: 32px;">
                       <button type="submit" class="btn col-sm-12 btn-round btn-theme" value="Pesquisar">Pesquisar </button>
                     </div>
                   </div>

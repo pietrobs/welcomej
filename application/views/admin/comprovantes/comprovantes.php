@@ -10,8 +10,8 @@
                       <div class="col-sm-4">
                         <label class="col-sm-12 col-sm-12 control-label">Organizar por</label>
                         <select class="form-control round-form" name="attribute">
+                          <option value="status">Status</option>
                           <option value="nome">Nome congressista</option>
-                          <option value="data_registro">Data inscrição</option>
                         </select>
                       </div>
 
@@ -37,8 +37,7 @@
                         <label class="col-sm-12 col-sm-12 control-label"  style="margin-top: 10px">Procurar por:</label>
                         <input type="text" name="search_by" class="form-control round-form">
                       </div>
-                    <div class="col-sm-2">
-                      <br/>
+                    <div class="col-sm-2" style="padding-top: 32px;">
                       <button type="submit" class="btn col-sm-12 btn-round btn-theme" value="Pesquisar">Pesquisar </button>
                     </div>
                   </div>
@@ -77,7 +76,7 @@
                           <td>
                             <button class = "btn btn-primary btn-xs" 
                                     data-toggle = "modal" 
-                                    data-target = "#congressista_modal" 
+                                    data-target = "#comprovante_modal" 
                                     data-type = "update"
                                     data-id = "<?=$congressista["id"]?>"
                                     data-nome = "<?=$congressista["nome"]?>"
@@ -129,10 +128,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
   $(document).ready(function(){
-    $('#congressista_modal').on('show.bs.modal', function (event) {
+    $('#comprovante_modal').on('show.bs.modal', function (event) {
       var button = $(event.relatedTarget)
       var action = button.data('type')
       var modal = $(this)
+      var recusar = $("#recusar_modal");
       var base_url_aprovar = "<?=base_url("Comprovante/aprovar/")?>"
       var base_url_recusar = "<?=base_url("Comprovante/recusar/")?>"
 
@@ -141,10 +141,12 @@
         console.log("UPDATE");
         var id = button.data('id') // Extract info from data-* attributes
         img = button.data("foto_comprovante");
-        modal.find('#title_congressista_modal').text("Visualizar comprovantes")
+        modal.find('#title_comprovante_modal').text("Visualizar comprovantes")
         modal.find('#id').hide()
         modal.find('#id').val(button.data("id"))
+        recusar.find("#id").val(button.data("id"))
         modal.find('#nome').val(button.data("nome"))
+        recusar.find("#nome").val(button.data("nome"))
         modal.find('#img_ref').attr("href", button.data("foto_comprovante"))
         modal.find('#img_comprovante').attr("src", button.data("foto_comprovante"))
         if(img.split(".")[1] == "pdf"){
@@ -158,7 +160,16 @@
         modal.find('#aprovar').attr("href", base_url_aprovar + button.data("id"))
         modal.find('#recusar').attr("href", base_url_recusar + button.data("id"))
         modal.find('#empresa_junior').val(button.data("empresa_junior"))
+        modal.find("#filiado_nucleo").val(button.data("filiado_nucleo"))
+        recusar.find("#empresa_junior").val(button.data("empresa_junior"))
+        recusar.find("#filiado_nucleo").val(button.data("filiado_nucleo"))
       }
+    })
+
+    $("#recusar").click(function(event){
+      event.preventDefault();
+      $("#comprovante_modal").modal("hide");
+      $("#recusar_modal").modal('show');
     })
   });
 </script>

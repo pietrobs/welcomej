@@ -1,11 +1,11 @@
-<div class="modal fade in" id="comprovante_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade in" id="recusar_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
       <div class="modal-content">
           <div class="modal-header">
-              <h4 class="modal-title" id="title_comprovante_modal"></h4>
+              <h4 class="modal-title" id="title_recusar_modal"></h4>
           </div>
           <div class="modal-body" id="modalInsert">
-              <form method="POST" id="form_congressista" enctype="">
+              <form method="POST" action="<?=base_url("Comprovante/recusar")?>" id="form_congressista" enctype="">
 
                 <input type="hidden" id="id" name="id" readonly="readonly">
                 <div class="row">  
@@ -25,16 +25,13 @@
                     </select>
                   </div>
                   <div class="form-group col-md-12">
-                    <a href="" name="img_ref" id="img_ref">
-                      <img src="" target="_blank" name = "img_comprovante" id="img_comprovante" style="width: 300px; height: 300px;">
-                    </a>
-                    <a href="" target="_blank" name="pdf_ref" id="pdf_ref" class="btn btn-round btn-theme">Visualizar comprovante</a>
+                    <label>Justificativa</label>
+                    <textarea class="form-control" rows="5" name="justificativa"></textarea>
                   </div>
                 </div>
                 <div class="modal-footer row">
-                    <a type="submit" class="btn btn-round btn-theme" id="aprovar" value="submit" href="<?=base_url("Comprovante/aprovar/")?>">Aprovar</a>
-                    <button type="submit" class="btn btn-round btn-danger" id="recusar" >Recusar</button>
-                    <button type="button" class="btn btn-round btn-secundary" data-dismiss="modal"> Fechar </button>
+                    <button type="submit" class="btn btn-round btn-theme" id="aprovar" value="submit" href="<?=base_url("Comprovante/aprovar/")?>">Confirmar</button> 
+                    <button type="button" class="btn btn-round btn-secundary" data-dismiss="modal"> Cancelar </button>
                 </div>
               </form>
           </div>
